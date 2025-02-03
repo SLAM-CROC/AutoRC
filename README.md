@@ -1,6 +1,6 @@
 # AutoRC - Autonomous RC Car Project 🚗💨
 
-AutoRC is an open-source Raspberry Pi-based **RC car framework** designed to help students build **autonomous vehicles** using Raspberry Pi, Pygame, and Pigpio.
+AutoRC is an open-source Raspberry Pi-based **RC car framework** designed to help build **autonomous vehicles** using Raspberry Pi, Pygame, and Pigpio.
 
 ## **✨ Features**
 - ✅ **Raspberry Pi-based** control with `Pygame`
@@ -13,7 +13,7 @@ AutoRC is an open-source Raspberry Pi-based **RC car framework** designed to hel
 
 ## **⚙️ Setup Instructions**
 
-### **1️⃣ Clone this Repository**
+### **1️ Clone this Repository**
 Open a terminal on your Raspberry Pi and run:
 
 ```bash
@@ -21,7 +21,7 @@ git clone https://github.com/YOUR_USERNAME/AutoRC.git
 cd AutoRC
 ```
 
-### **2️⃣ Install Dependencies**
+### **2️ Install Dependencies**
 Make sure your system is up to date and install the required libraries:
 
 ```bash
@@ -29,7 +29,7 @@ sudo apt update
 sudo apt install -y python3-pigpio python3-pygame
 ```
 
-### **3️⃣ Enable `pigpiod` (Required for PWM Control)**
+### **3️ Enable `pigpiod` (Required for PWM Control)**
 Start the **Pigpio daemon** and enable it to start at boot:
 
 ```bash
@@ -37,19 +37,19 @@ sudo systemctl enable pigpiod
 sudo systemctl start pigpiod
 ```
 
-### **4️⃣ Run the Program**
+### **4️ Run the Program**
 Execute the RC Car program manually:
 
 ```bash
-python3 src/PWMDriving.py
+python3 src/PiCarDriving.py
 ```
 
 ---
 
-## **🛠️ Setting Up Auto Start with Systemd**
+## ** Setting Up Auto Start with Systemd**
 To **automatically start AutoRC on boot**, follow these steps:
 
-### **1️⃣ Create a Systemd Service**
+### **1️ Create a Systemd Service**
 Run:
 ```bash
 sudo nano /etc/systemd/system/autorc.service
@@ -61,7 +61,7 @@ Description=AutoRC - Autonomous RC Car Service
 After=network.target pigpiod.service
 
 [Service]
-ExecStart=/usr/bin/python3 /home/pi/AutoRC/src/PWMDriving.py
+ExecStart=/usr/bin/python3 /home/pi/AutoRC/src/PiCarDriving.py
 WorkingDirectory=/home/pi/AutoRC
 StandardOutput=inherit
 StandardError=inherit
@@ -72,9 +72,9 @@ Environment="PATH=/usr/bin:/usr/local/bin"
 [Install]
 WantedBy=multi-user.target
 ```
-**Note:** Make sure the paths match your actual file locations!
+**Note:** Make sure the paths match your actual file locations! User match your Pi user name!
 
-### **2️⃣ Enable and Start the Service**
+### **2️ Enable and Start the Service**
 Run:
 ```bash
 sudo systemctl daemon-reload
@@ -82,7 +82,7 @@ sudo systemctl enable autorc.service
 sudo systemctl start autorc.service
 ```
 
-### **3️⃣ Check the Service Status**
+### **3️ Check the Service Status**
 To verify if it's running:
 ```bash
 sudo systemctl status autorc.service
@@ -100,24 +100,22 @@ sudo systemctl stop autorc.service
 
 ---
 
-## **🧑‍💻 Contributing**
-Students can modify and extend the `src/` files to add **new features** like:
-- 🏆 **Obstacle Avoidance** (Using ultrasonic or LiDAR sensors)
-- 🤠 **Self-driving AI** (Machine learning integration)
-- 🎤 **Voice-Controlled RC Car** (Using speech recognition)
+## ** Contributing**
+Developer can modify and extend the `src/` files to add **new features** like:
+- 🏆 **Obstacle Avoidance** 
+- 🤠 **Self-driving AI** 
+- 🎤 **Voice-Controlled RC Car**
 
 ---
 
-## **📝 License**
+## ** License**
 This project is licensed under the **MIT License**.
 
 ---
 
-## **📩 Support & Contact**
-If you have any issues, open a GitHub **issue** or contact me via **[GitHub Discussions](https://github.com/YOUR_USERNAME/AutoRC/discussions)**.
+## ** Support & Contact**
+If you have any issues, contact us via **zhaos98@mcmaster.ca**; **maginnit@mcmaster.ca**.
 
 ---
 
-## **🚀 Let's Build the Future of RC Cars!**
-Happy coding! 🤖💡
 
