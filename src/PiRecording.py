@@ -1,5 +1,5 @@
 from picamera2 import Picamera2, Preview
-from picamera2.encoders import H264Encoder
+import picamera2.encoders 
 import time
 from datetime import datetime
 import os
@@ -10,11 +10,12 @@ def camInit() :
     camera = Picamera2()
 
 # Configure camera settings
-    camera_config = camera.create_video_configuration({"size": (720,480)})
+    camera_config = camera.create_video_configuration(main={"size": (640, 480), "format": 'YUV420'})
+    #camera.sensor_resolution = (640,480)
     camera.configure(camera_config)
 
 # Define the directory where recordings will be saved
-SAVE_DIRECTORY = "/home/pi/Videos"  # Change this to your desired directory
+SAVE_DIRECTORY = "Videos"  # Change this to your desired directory
 
 def generate_filename():
     """Generates a filename based on the current date and time, including the save directory."""
@@ -24,8 +25,8 @@ def generate_filename():
 def start_recording(output_file):
     """Starts recording to the specified file."""
     print(f"Starting recording: {output_file}")
-    encoder = H264Encoder()  # Use the H264 encoder
-    camera.start_recording(encoder, output_file)  # Pass encoder and output file
+    encoder = picamera2.encoders.H264Encoder() # Use the H264 encoder
+    camera.start_recording( encoder ,output_file)  # Pass encoder and output file
 
 def stop_recording():
     """Stops recording."""
@@ -42,12 +43,13 @@ def CameraSetupHandler() :
     
     output_file = generate_filename()
     camera.start()
-    time.sleep(2)
+    time.sleep(0.5)
 
 def CameraEnd() :
+    stop_recording()
     camera.stop()
 
-# CameraSetupHandler()
+#CameraSetupHandler()
 # Example Usage
 #if __name__ == "__main__":
     # Ensure the save directory exists
@@ -56,20 +58,19 @@ def CameraEnd() :
    #     print(f"Created directory: {SAVE_DIRECTORY}")
     
     # Generate a timestamped filename
-# output_file = generate_filename()
+output_file = generate_filename()
     
     # Start the camera
 #camera.start()
 #time.sleep(2)  # Let the camera warm up
-'''
-try:
+
+#try:
         # Start recording
-        start_recording(output_file)
-        time.sleep(10)  # Record for 10 seconds
+        #start_recording(output_file)
+        #time.sleep(10)  # Record for 10 seconds
 
         # Stop recording
-        stop_recording()
-finally:
+        #stop_recording()
+#finally:
         # Stop the camera
-        camera.stop()
-        '''
+        #camera.stop()
