@@ -24,6 +24,7 @@ def generate_filename():
 
 def start_recording(output_file):
     """Starts recording to the specified file."""
+    generate_filename()
     print(f"Starting recording: {output_file}")
     encoder = picamera2.encoders.H264Encoder() # Use the H264 encoder
     camera.start_recording( encoder ,output_file)  # Pass encoder and output file
