@@ -174,7 +174,7 @@ def WindowHanlder() : # a window handler for a visual reference while debugging,
 
 def getKeyboardInputs() : # manages the control axis and throttle axis based off the arrowkey inputs
     
-    global ControlAxis, ThrottleAxis
+    global ControlAxis, ThrottleAxis, ThrottleKey 
     
     keys = pg.key.get_pressed() # gets input keys
     
@@ -198,7 +198,9 @@ def getKeyboardInputs() : # manages the control axis and throttle axis based off
         #print("Right is Pressed")
         b += 1
    
-
+    if(keys[pg.K_SPACE]) :
+        ThrottleKey = 1
+        
     ControlAxis = a # NEED TO BE HERE TO RESET, WILL NOT RESET IN FUNCTION
     ThrottleAxis = b
     
