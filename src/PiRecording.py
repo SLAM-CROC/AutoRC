@@ -15,7 +15,7 @@ def camInit() :
     camera.configure(camera_config)
 
 # Define the directory where recordings will be saved
-SAVE_DIRECTORY = "~/Videos"  # Change this to your desired directory
+SAVE_DIRECTORY = "../Videos"  # Change this to your desired directory
 
 def generate_filename():
     """Generates a filename based on the current date and time, including the save directory."""
